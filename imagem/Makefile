@@ -39,6 +39,8 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.$(EXT)
 
 build b : $(OBJETOS)
 
+rebuild rb : clean $(APP)
+
 list l : 
 	@echo Arquivos fonte do projeto:
 	@ls -l $(SRC_DIR)
@@ -68,7 +70,7 @@ init i :
 		mkdir $(BIN_DIR) ; \
 	fi;
 
-debug d :
+debug d : rebuild
 	@echo Executando $(BIN_DIR)/$(APP) em modo debug
 	@gdb $(BIN_DIR)/$(APP)
 
