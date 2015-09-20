@@ -8,8 +8,6 @@
 namespace GBK
 {
     void inicializa (int argc, char* argv[], int largura, int altura, int posX, int posY);
-    void callbackDisplay (void);
-    void callbackTeclado (unsigned char tecla, int x, int y);
 }
 
 #endif          // DISPLAY_H
