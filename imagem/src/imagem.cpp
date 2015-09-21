@@ -32,6 +32,11 @@ int GBK::Imagem::getAltura ()
     return this->_altura;
 }
 
+int* GBK::Imagem::getPixels ()
+{
+    return this->_pixels;
+}
+
 void GBK::Imagem::noise ()
 {
     // inicializa a semente

@@ -4,11 +4,12 @@
 #include        "inc/imagem.h"
 #include        "inc/gbkcallbacks.h"
 
+GBK::Imagem* img = 0;
+
 void GBK::CALLBACKS::render (void)
 {
     glClear (GL_COLOR_BUFFER_BIT);
-    glRasterPos2i (0,0);
-    //glDrawPixels (this->getLargura (), this->getAltura (), GL_BRGA_EXT, GL_UNSIGNED_BYTE, image);
+    glDrawPixels (img->getLargura (), img->getAltura (), GL_BGRA_EXT, GL_UNSIGNED_BYTE, img->getPixels ());
     glFlush ();
 }
 
@@ -22,7 +23,7 @@ void GBK::CALLBACKS::teclado (unsigned char tecla, int tapPosX, int tapPosY)
 
 int main (int argc, char* argv[])
 {
-    GBK::Imagem* img = new GBK::Imagem (10, 10);
+    img = new GBK::Imagem (400, 400);
     img->noise ();
 
     GBK::inicializa (argc, argv, 400, 400, 100, 100);

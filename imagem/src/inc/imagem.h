@@ -12,6 +12,7 @@ public:
     int getPixel (int x, int y);
     int getLargura ();
     int getAltura ();
+    int* getPixels ();
 
     void noise ();
     void empacotaPixel (int a, int r, int g, int b, int* argb);
