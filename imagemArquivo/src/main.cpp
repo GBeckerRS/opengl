@@ -2,15 +2,14 @@
 #include        <cstring>
 
 #include        "arquivo.h"
+#include        "PTMreader.h"
 
 int main (void)
 {
     char* pcTexto = new char[10];
-    pcTexto = strcpy (pcTexto, "teste.txt");
-    GBK::Arquivo arq (pcTexto, 0);
-    std::cout << "Tamanho arquivo: " << arq.getTamanhoArquivo () << std::endl;
-    char* conteudo = arq.le ();
-    std::cout << "Conteudo: " << conteudo << std::endl;
+    pcTexto = strcpy (pcTexto, "img_txt.PTM");
+    GBK::PTMreader ptm (pcTexto);
+    ptm.getImagem ();
 
     return 0;
 }

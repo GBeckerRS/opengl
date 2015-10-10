@@ -15,7 +15,6 @@ public:
 private:
     char* _nome;
     bool _modo;
-
     char* _buffer;
 
     void limpaBuffer ();
