@@ -23,7 +23,7 @@ OBJ_DIR = obj
 BIN_DIR = bin
 EXT = cpp
 #=====================================================
-FONTES = src/main.cpp src/display.cpp src/imagem.cpp
+FONTES = src/main.cpp src/display.cpp src/imagem.cpp src/arquivo.cpp src/PTMreader.cpp
 TEMP = $(subst $(SRC_DIR),$(OBJ_DIR),$(FONTES))	# Auxiliar
 OBJETOS = $(TEMP:.$(EXT)=.o)					# Arquivos Objeto
 #=====================================================

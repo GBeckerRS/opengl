@@ -72,3 +72,27 @@ void GBK::Imagem::desempacotaPixel (int argb, int* a, int* r, int* g, int* b)
     *b = argb & 0xff;
 }
 
+void GBK::Imagem::plot (GBK::Imagem* img)
+{
+    float alphaCalculado = 0.0;
+    int pX = 0, pY = 0;
+    int a = 0, r = 0, g = 0, b = 0, aI = 0, rI = 0, gI = 0, bI = 0;
+    int argb = 0, argbI = 0;
+    int tamanho = this->_largura * this->_altura;
+    for (int i = 0; i < tamanho; i++)
+    {
+        pX = i % this->_largura;
+        pY = i / this->_largura;
+        argb = this->getPixel (pX, pY);
+        argbI = img->getPixel (pX, pY);
+        this->desempacotaPixel (argb, &a, &r, &g, &b);
+        img->desempacotaPixel (argbI, &aI, &rI, &gI, &bI);
+        alphaCalculado = aI / 255;
+        r = r * (1 - alphaCalculado) + rI * alphaCalculado;
+        g = g * (1 - alphaCalculado) + gI * alphaCalculado;
+        b = b * (1 - alphaCalculado) + bI * alphaCalculado;
+        this->empacotaPixel (a, r, g, b, &argb);
+        this->setPixel (argb, pX, pY);
+    }
+}
+

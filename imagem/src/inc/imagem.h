@@ -17,6 +17,7 @@ public:
     void noise ();
     void empacotaPixel (int a, int r, int g, int b, int* argb);
     void desempacotaPixel (int argb, int* a, int* r, int* g, int* b);
+    void plot (GBK::Imagem* img);
 
 private:
     int* _pixels;
