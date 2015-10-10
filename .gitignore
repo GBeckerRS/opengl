@@ -1,2 +1,5 @@
 Exercicio 1/obj/*
 Exercicio 1/bin/*
+*.PTM
+*.pnm
+*.png
