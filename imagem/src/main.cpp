@@ -26,22 +26,11 @@ void GBK::CALLBACKS::teclado (unsigned char tecla, int tapPosX, int tapPosY)
 int main (int argc, char* argv[])
 {
     char* arq = new char[15];
-    strcpy (arq, "blue.PTM");
+    strcpy (arq, "bg.PTM");
     GBK::PTMreader ptm (arq);
 
-    char* arq1 = new char[15];
-    strcpy (arq1, "yellow.PTM");
-    GBK::PTMreader ptm1 (arq1);
-    GBK::Imagem* img1 = ptm1.getImagem ();
-
-    char* arq2 = new char[15];
-    strcpy (arq2, "red.PTM");
-    GBK::PTMreader ptm2 (arq2);
-    GBK::Imagem* img2 = ptm2.getImagem ();
-
-    img = ptm.getImagem ();
-    img->plot (img1);
-    img->plot (img2);
+    GBK::Imagem* img1 = ptm.getImagem ();
+    img = img1->split (900, 100, 400, 100);
 
     GBK::inicializa (argc, argv, 400, 400, 100, 100);
 

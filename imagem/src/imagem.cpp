@@ -1,7 +1,8 @@
 #include    "inc/imagem.h"
 
 #include    <stdlib.h>  // rand, srand
-#include    <time.h>    // time,
+#include    <time.h>    // time
+#include    <cstring>   // memcpy
 
 #include    <iostream>  // std::cout
 
@@ -14,12 +15,14 @@ GBK::Imagem::Imagem (int largura, int altura)
 
 void GBK::Imagem::setPixel (int argb, int x, int y)
 {
-    this->_pixels [x+(y*this->_largura)] = argb;
+    int pos = this->getPosicao (x, y);
+    this->_pixels [pos] = argb;
 }
 
 int GBK::Imagem::getPixel (int x, int y)
 {
-    return this->_pixels [x+(y*this->_largura)];
+    int pos = this->getPosicao (x, y);
+    return this->_pixels [pos];
 }
 
 int GBK::Imagem::getLargura ()
@@ -94,5 +97,50 @@ void GBK::Imagem::plot (GBK::Imagem* img)
         this->empacotaPixel (a, r, g, b, &argb);
         this->setPixel (argb, pX, pY);
     }
+}
+
+GBK::Imagem* GBK::Imagem::split (int x, int y, int largura, int altura)
+{
+    if (largura == 0 && altura ==0)
+    {
+        return 0;
+    }
+
+    // Caso a area recortada ultrapasse os limites da imagem
+    if ((largura + x) > this->getLargura ())
+    {
+        largura = this->getLargura () - x;
+    }
+    if ((altura + y) > this->getAltura ())
+    {
+        altura = this->getAltura () - y;
+    }
+
+    int tamanho = largura * altura;
+    int* pixels = new int[tamanho];
+    for (int i = y; (i - y) < altura; i++)
+    {
+        int pos = this->getPosicao (x, i);
+        memcpy (&pixels[(i - y) * largura], &this->_pixels[pos], largura * sizeof (int));
+    }
+
+    Imagem* tmp = new Imagem (largura, altura);
+    for (int py = 0; py < altura; py++)
+    {
+        for (int px = 0; px < largura; px++)
+        {
+            tmp->setPixel (pixels[px], px, py);
+        }
+    }
+
+    return tmp;
+}
+
+// Métodos privados
+int GBK::Imagem::getPosicao (int x, int y)
+{
+    int largura = this->getLargura ();
+    int posicao = x + (y * largura);
+    return posicao;
 }
 
