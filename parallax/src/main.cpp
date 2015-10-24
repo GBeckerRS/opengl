@@ -2,11 +2,11 @@
 #include        <cstring>
 #include        <GL/glut.h>
 
-#include        "inc/display.h"     // OpenGL
+#include        "inc/display.h"
 #include        "inc/imagem.h"
-#include        "PTMreader.h"
+#include        "inc/PTMreader.h"
 #include        "inc/gbkcallbacks.h"
-#include        "camada.h"
+#include        "inc/camada.h"
 
 GBK::Imagem* img = 0;
 GBK::Imagem* bg = 0;
@@ -30,7 +30,7 @@ void GBK::CALLBACKS::teclado (unsigned char tecla, int tapPosX, int tapPosY)
     {
         if ( tecla == 'd' || tecla == 'D')
         {
-            xCamada += 2;
+            xCamada += 4;
             if ((xCamada + 400) > 1200)
             {
                 xCamada = 1200 - 400;
@@ -40,7 +40,7 @@ void GBK::CALLBACKS::teclado (unsigned char tecla, int tapPosX, int tapPosY)
         {
             if (tecla == 'a' || tecla == 'A')
             {
-                xCamada -= 2;
+                xCamada -= 4;
                 if (xCamada < 0)
                 {
                     xCamada = 0;
